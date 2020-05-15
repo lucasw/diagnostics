@@ -1,16 +1,16 @@
 sudo: required
-dist: trusty
+dist: bionic
 language: generic
 compiler:
   - gcc
 # install dependencies
 install:
-  - export CI_ROS_DISTRO=noetic
+  - export CI_ROS_DISTRO=melodic
   - echo $CI_ROS_DISTRO
-  - sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu trusty main" > /etc/apt/sources.list.d/ros-latest.list'
+  - sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu bionic main" > /etc/apt/sources.list.d/ros-latest.list'
   - wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
   - sudo apt-get update
-  - sudo apt-get install python-catkin-pkg python-rosdep ros-noetic-catkin
+  - sudo apt-get install python-catkin-pkg python-rosdep ros-${CI_ROS_DISTRO}-catkin
   - sudo `which rosdep` init
   - rosdep update
   # use rosdep to install dependencies
